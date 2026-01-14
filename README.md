@@ -29,7 +29,7 @@ It implements **server-side pagination**, **persistent row selection**, and a **
 
 Art Institute of Chicago – Artworks API
 
-[text](https://api.artic.edu/api/v1/artworks?page=1)
+<https://api.artic.edu/api/v1/artworks?page=1>
 
 The API is **page-based** (1-indexed).  
 Each page is fetched individually to ensure true server-side pagination.
