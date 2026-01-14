@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page-container {
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.table-wrapper {
+  background: white;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.p-selection-column {
+  padding: 10px 0;
+}
+.p-datatable-thead > tr > th {
+  background-color: #f1f3f5;
+  font-weight: 600;
+  font-size: 15px;
+}
+.p-datatable-tbody > tr > td {
+  font-size: 13px;
+}
+
+.page-container aside {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bulkremain {
+  font-weight: 200;
+  font-size: small;
+}
+.bulk-select-header {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.bulk-select-header .p-column-title {
+  order: 1;
+  display: flex;
+  align-items: center;
+}
+
+.paginator-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.paginator-container button {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #d0d5dd;
+  background-color: #ffffff;
+  color: #344054;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.paginator-container button:hover:not(:disabled) {
+  background-color: #f9fafb;
+}
+
+.paginator-container button:disabled {
+  cursor: not-allowed;
+}
+.paginator-container .nav-button:disabled {
+  opacity: 0.5;
+}
+.page-breadcrumb {
+  min-width: 120px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #475467;
+}
+
+.page-breadcrumb button {
+  margin: 0 5px;
+}
+
+.page-breadcrumb button:disabled {
+  background: #4a09fb;
+  color: white;
+}
+
+.popover{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 5px;
+}
+
+.popover input{
+  padding: 5px;
+}
+
+.info-text{
+ color: gray;
+}
+
+.num{
+ color: black;
+}
