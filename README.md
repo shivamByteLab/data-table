@@ -7,7 +7,7 @@ It implements **server-side pagination**, **persistent row selection**, and a **
 
 ## 🔗 Live Demo
 
-👉 <DEPLOYED_APP_URL>
+👉 <https://data-tabler.netlify.app/>
 
 ## 📦 Repository
 
