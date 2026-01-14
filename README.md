@@ -11,7 +11,7 @@ It implements **server-side pagination**, **persistent row selection**, and a **
 
 ## 📦 Repository
 
-👉 <GITHUB_REPO_URL>
+👉 <https://github.com/shivamByteLab/data-table>
 
 ---
 
