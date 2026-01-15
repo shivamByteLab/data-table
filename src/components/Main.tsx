@@ -35,7 +35,7 @@ export default function Main() {
 
       setProducts(data.data);
       setPaginatorData(data.pagination);
-      // setLoading(false);
+      setLoading(false);
     };
     currentData();
   }, [page]);
