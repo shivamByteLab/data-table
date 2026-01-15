@@ -113,3 +113,28 @@
 .num{
  color: black;
 }
+.loader-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader{
+ 
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+  animation: spinner infinite 1s;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+
+to {
+  transform: rotate(360deg);
+}
+}

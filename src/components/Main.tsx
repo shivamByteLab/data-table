@@ -3,7 +3,6 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import fetchArtworks from "../data/fetchData";
 import type { Artwork, Pagination } from "../types/DataTypes";
-// import { Paginator } from "primereact/paginator";
 
 import { OverlayPanel } from "primereact/overlaypanel";
 import { Button } from "primereact/button";
@@ -14,7 +13,7 @@ import Paginator from "./Paginator";
 export default function Main() {
   const [products, setProducts] = useState<Artwork[]>([]);
   const [paginatorData, setPaginatorData] = useState<Pagination>();
-
+  const [loading, setLoading] = useState<boolean>(false);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
 
   const [bulkTarget, setBulkTarget] = useState<number | null>(null);
@@ -31,10 +30,12 @@ export default function Main() {
   //fetching data on load and page change
   useEffect(() => {
     const currentData = async () => {
+      setLoading(true)
       const data = await fetchArtworks(page); //returns data object with {data,paginaion}
 
       setProducts(data.data);
       setPaginatorData(data.pagination);
+      setLoading(false)
     };
     currentData();
   }, [page]);
@@ -76,65 +77,69 @@ export default function Main() {
           rows
         </span>
       )}
-
-      <div className="table-wrapper">
-        <DataTable
-          value={products}
-          scrollable
-          scrollHeight="70vh"
-          stripedRows
-          dataKey="id"
-          selectionMode="checkbox"
-          selection={products.filter((p) => selectedIds.has(p.id))}
-          onSelectionChange={(e) =>
-            selection(e, selectedIds, setSelectedIds, products)
-          }
-          tableStyle={{ minWidth: "50rem" }}
-        >
-          <Column
-            selectionMode="multiple"
-            headerClassName="bulk-select-header"
-            header={
-              <Button
-                icon="pi pi-chevron-down"
-                text
-                rounded
-                size="small"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  bulkOverlayRef.current?.toggle(e);
-                }}
+      {loading && <div className="loader-container"><p className="loader"></p></div>}
+      {!loading && (
+        <>
+          {" "}
+          <div className="table-wrapper">
+            <DataTable
+              value={products}
+              scrollable
+              scrollHeight="70vh"
+              stripedRows
+              dataKey="id"
+              selectionMode="checkbox"
+              selection={products.filter((p) => selectedIds.has(p.id))}
+              onSelectionChange={(e) =>
+                selection(e, selectedIds, setSelectedIds, products)
+              }
+              tableStyle={{ minWidth: "50rem" }}
+            >
+              <Column
+                selectionMode="multiple"
+                headerClassName="bulk-select-header"
+                header={
+                  <Button
+                    icon="pi pi-chevron-down"
+                    text
+                    rounded
+                    size="small"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      bulkOverlayRef.current?.toggle(e);
+                    }}
+                  />
+                }
               />
-            }
-          />
 
-          <Column
-            field="title"
-            header="TITLE"
-            bodyStyle={{ fontWeight: "bold" }}
-          />
-          <Column field="place_of_origin" header="PLACE OF ORIGIN" />
-          <Column field="artist_display" header="ARTIST" />
-          <Column field="inscriptions" header="INSCRIPTIONS" />
-          <Column field="date_start" header="START DATE" />
-          <Column field="date_end" header="END DATE" />
-        </DataTable>
-      </div>
+              <Column
+                field="title"
+                header="TITLE"
+                bodyStyle={{ fontWeight: "bold" }}
+              />
+              <Column field="place_of_origin" header="PLACE OF ORIGIN" />
+              <Column field="artist_display" header="ARTIST" />
+              <Column field="inscriptions" header="INSCRIPTIONS" />
+              <Column field="date_start" header="START DATE" />
+              <Column field="date_end" header="END DATE" />
+            </DataTable>
+          </div>
+          <aside>
+            <span className="info-text">
+              Showing <span className="num">{start}</span> to{" "}
+              <span className="num">{end}</span> of{" "}
+              <span className="num">{paginatorData?.total ?? 0}</span>
+            </span>
 
-      <aside>
-        <span className="info-text">
-          Showing <span className="num">{start}</span> to{" "}
-          <span className="num">{end}</span> of{" "}
-          <span className="num">{paginatorData?.total ?? 0}</span>
-        </span>
-
-        <Paginator
-          page={page}
-          rowsPerPage={rowsPerPage}
-          totalRecords={paginatorData?.total ?? 0}
-          onPageChange={setPage}
-        />
-      </aside>
+            <Paginator
+              page={page}
+              rowsPerPage={rowsPerPage}
+              totalRecords={paginatorData?.total ?? 0}
+              onPageChange={setPage}
+            />
+          </aside>
+        </>
+      )}
 
       <OverlayPanal
         bulkOverlayRef={bulkOverlayRef}
