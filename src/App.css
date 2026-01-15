@@ -80,7 +80,9 @@
   opacity: 0.5;
 }
 .page-breadcrumb {
-  min-width: 120px;
+  overflow: hidden;
+    text-wrap: nowrap;
+  width: 30vw;
   text-align: center;
   font-size: 0.85rem;
   color: #475467;
@@ -108,6 +110,7 @@
 
 .info-text{
  color: gray;
+ text-wrap: nowrap;
 }
 
 .num{
