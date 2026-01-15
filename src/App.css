@@ -82,7 +82,8 @@
 .page-breadcrumb {
   overflow: hidden;
     text-wrap: nowrap;
-  width: 30vw;
+  max-width: 30vw;
+  min-width: 120px;
   text-align: center;
   font-size: 0.85rem;
   color: #475467;
